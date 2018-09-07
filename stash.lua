@@ -40,7 +40,7 @@ end
 
 setmetatable(M,{
 	__call = function( self, name )
-		return self:get(name)
+		return self.get(name)
 	end
 })
 
