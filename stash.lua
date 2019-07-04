@@ -2,7 +2,7 @@ local M = {}
 local HIDDEN_MT = { __serialize = function() return end }
 local STASH_MT = { __serialize = function() return '...' end }
 if not rawget(_G,'\0STASH') then
-	M.stash = setmetatable({},HIDDEN_MT)
+	M.stash = setmetatable({}, HIDDEN_MT)
 	rawset(_G,'\0STASH', M.stash)
 else
 	M.stash = rawget(_G,'\0STASH')
@@ -18,9 +18,9 @@ if not table.clear then
 	end
 end
 
-function M.get( name )
+function M.get( name, initial )
 	if not M.stash[ name ] then
-		M.stash[ name ] = setmetatable({},STASH_MT)
+		M.stash[ name ] = setmetatable(initial or {}, STASH_MT)
 	end
 	return M.stash[ name ]
 end
@@ -39,8 +39,8 @@ function M.clear( name )
 end
 
 setmetatable(M,{
-	__call = function( self, name )
-		return self.get(name)
+	__call = function( self, ... )
+		return self.get(...)
 	end
 })
 
