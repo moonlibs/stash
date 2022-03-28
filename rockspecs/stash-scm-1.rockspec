@@ -1,7 +1,7 @@
 package = 'stash'
 version = 'scm-1'
 source  = {
-    url    = 'git://github.com/moonlibs/stash.git',
+    url    = 'git+https://github.com/moonlibs/stash.git',
     branch = 'master',
 }
 description = {
